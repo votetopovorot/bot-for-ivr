@@ -2,4 +2,4 @@ IDE: PyCharm 3.3
 Libraries: PyTelegramBotAPI, sqlite3
 Devices: telegram apps for Asus ZE 500 KL, IPhone 6, Google Chrome
 Smth peculiar: No
-How to find: see README
+How to find: Telegram -> @lyceum_ivr_bot 
