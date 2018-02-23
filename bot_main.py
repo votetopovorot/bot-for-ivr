@@ -20,8 +20,8 @@ level)
 
 
 #___________________ ставим значение переменных ____________
-token = '   ' # вставьте токен
-password = "  " # вставьте пароль
+token = '539763023:AAHh__RhANwt5-cfsTtC3Z6_yH45j8MEr54' # вставьте токен
+password = "ilikeprojects" # вставьте пароль
 bot = telebot.TeleBot(token, threaded=False) # объект - бот
 
 #________________ создаем списки _____________
@@ -381,76 +381,12 @@ def breakingnews(message):
             cursor = conn.cursor()
             cursor.execute("SELECT * FROM usersusers")
             rows = cursor.fetchall()
-            if whom == 'research':
-                for row in rows:
-                    if row[3] == 'research':
-                        if where == '10':
-                            if row[4] == '10':
-                                chatid = str(row[1])
-                                bot.send_message(int(chatid), message.text)
-                        if where == '11':
-                            if row[4] == '11':
-                                chatid = str(row[1])
-                                bot.send_message(int(chatid), message.text)
-                        if where == '10 и 11':
-                            if row[4] == '10 и 11':
-                                chatid = str(row[1])
-                                bot.send_message(int(chatid), message.text)
-            elif whom == 'projects':
-                for row in rows:
-                    if where == '10':
-                        if row[4] == '10':
-                            chatid = str(row[1])
-                            bot.send_message(int(chatid), message.text)
-                    if where == '11':
-                        if row[4] == '11':
-                            chatid = str(row[1])
-                            bot.send_message(int(chatid), message.text)
-                    if where == '10 и 11':
-                        if row[4] == '10 и 11':
-                            chatid = str(row[1])
-                            bot.send_message(int(chatid), message.text)
-            elif whom == 'research and projects':
-                for row in rows:
-                    if row[3] == 'research':
-                        if where == '10':
-                            if row[4] == '10':
-                                chatid = str(row[1])
-                                bot.send_message(int(chatid), message.text)
-                        if where == '11':
-                            if row[4] == '11':
-                                chatid = str(row[1])
-                                bot.send_message(int(chatid), message.text)
-                        if where == '10 и 11':
-                            if row[4] == '10 и 11':
-                                chatid = str(row[1])
-                                bot.send_message(int(chatid), message.text)
-                    if row[3] == 'projects':
-                        if where == '10':
-                            if row[4] == '10':
-                                chatid = str(row[1])
-                                bot.send_message(int(chatid), message.text)
-                        if where == '11':
-                            if row[4] == '11':
-                                chatid = str(row[1])
-                                bot.send_message(int(chatid), message.text)
-                        if where == '10 и 11':
-                            if row[4] == '10 и 11':
-                                chatid = str(row[1])
-                                bot.send_message(int(chatid), message.text)
-                    if row[3] == 'research and projects':
-                        if where == '10':
-                            if row[4] == '10':
-                                chatid = str(row[1])
-                                bot.send_message(int(chatid), message.text)
-                        if where == '11':
-                            if row[4] == '11':
-                                chatid = str(row[1])
-                                bot.send_message(int(chatid), message.text)
-                        if where == '10 и 11':
-                            if row[4] == '10 и 11':
-                                chatid = str(row[1])
-                                bot.send_message(int(chatid), message.text)
+            for row in rows:
+                print(row)
+                if row[3] == whom or row[3] == 'research and projects' or whom == 'research and projects':
+                    if row[4] == where or row[4] == '10 и 11' or whom == '10 и 11':
+                        chatid = str(row[1])
+                        bot.send_message(int(chatid), message.text)
             cursor.close()
             conn.close()
             back = bot.send_message(message.chat.id, 'Сообщение разослано!', reply_markup=markup1)
@@ -520,11 +456,7 @@ conn.commit()
 if __name__ == '__main__':
     while True:
         try:
-            bot.polling(none_stop=True, interval=2, timeout=10)
+            bot.polling(none_stop=True)
         except Exception as e:
-            print(e)
-            time.sleep(15)
-            @bot.message_handler(content_types=["text"])
-            def again_please(message):
-                bot.send_message(message.chat.id, 'Сервер Телеграмм остановил работу бота. \n'
-                                                  'Пожалуйста, нажмите /start для возобновления')
+            time.sleep(5)
+            pass
