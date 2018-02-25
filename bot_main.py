@@ -20,8 +20,8 @@ level)
 
 
 #___________________ ставим значение переменных ____________
-token = '539763023:AAHh__RhANwt5-cfsTtC3Z6_yH45j8MEr54' # вставьте токен
-password = "ilikeprojects" # вставьте пароль
+token = ' ' # вставьте токен
+password = " " # вставьте пароль
 bot = telebot.TeleBot(token, threaded=False) # объект - бот
 
 #________________ создаем списки _____________
